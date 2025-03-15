@@ -58,7 +58,12 @@ const swaggerOptions = {
             title: 'Library API Documentation',
             description: `
             Library API Documentation  
-            Welcome to the Library API! This API allows you to manage books, including adding, retrieving, updating, and deleting them.  
+            Welcome to the Library API! This API allows you to manage books, including adding, retrieving, updating, and deleting them.
+            
+            Servers
+            - Local server: http://localhost:5500
+            - Production server: https://library-api-v2q4.onrender.com
+            Make sure to switch between servers as needed.
 
             Authentication  
             - Some routes require a BEARER TOKEN (JWT) for authentication. 
@@ -71,7 +76,6 @@ const swaggerOptions = {
             - User Authentication (Login/Register)  
             - JWT-Based Security for protected routes  
 
-            Base URL: \`http://localhost:5500\`
             `,
             contact: {
                 name: 'Timileyin',
