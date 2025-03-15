@@ -81,7 +81,10 @@ const swaggerOptions = {
             {
                 url: "http://localhost:5500",
                 description: "Local server"
-            }
+            },
+            {
+                url: "https://library-api-v2q4.onrender.com",
+                description: "Production server"}
         ],
         components: {
             securitySchemes: {
