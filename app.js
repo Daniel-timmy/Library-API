@@ -82,12 +82,14 @@ const swaggerOptions = {
         },
         servers: [
             {
-                url: "http://localhost:5500",
-                description: "Local server"
+                url: "https://library-api-v2q4.onrender.com",
+                description: "Production server"
             },
             {
-                url: "https://library-api-v2q4.onrender.com",
-                description: "Production server"}
+                url: "http://localhost:5500",
+                description: "Local server"
+            }
+            
         ],
         components: {
             securitySchemes: {
@@ -196,8 +198,7 @@ app.get('/', (req, res) => {
             <div style="text-align: center; margin-top: 20px; border: 1px solid gray; padding: 20px; border-radius: 5px;">
                 <h1>Welcome to the Library API</h1>
                 <p>This API allows you to manage books, including adding, retrieving, updating, and deleting them.</p>
-                <p>MAKE SURE TO SWITCH TO THE PRODUCTION SERVER FOR TESTING THE LIVE API</p>
-                <p><a href="/api-docs/">API Documentation</a></p>
+                <p><a href="/api-docs/">Swagger API Documentation</a></p>
             </div>
         </body>
         </html>
