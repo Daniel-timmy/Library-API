@@ -4,19 +4,8 @@ import jwt from 'jsonwebtoken';
 import { JWT_EXPIRES_IN, JWT_SECRET } from "../config/env.js";
 import mongoose from 'mongoose';
 import User from "../models/user.model.js";
+import getDecodedToken from "../utils/getToken.utils.js";
 
-const getDecodedToken = (req, res) => {
-    let token;
-
-    if(req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
-      token = req.headers.authorization.split(' ')[1];
-    }
-
-    if(!token) return res.status(401).json({ message: 'Unauthorized' });
-
-    const decoded = jwt.verify(token, JWT_SECRET);
-    return decoded
-}
 
 export const addBook = async (req, res, next) => {
     const session = await mongoose.startSession();
@@ -102,7 +91,11 @@ export const borrowBook = async (req, res, next) =>{
             // throw error;
             return res.status(400).json({
                 success: false,
-                message: 'Invalid Book ID',
+                message: 'Book not found',
+                details: {
+                    field: 'id',
+                    error: 'Invalid Book ID'
+                }
             })
         }
         if (book.status === "Available"){
@@ -140,6 +133,10 @@ export  const returnBook = async (req, res, next) => {
             return res.status(404).json({
                 success: false,
                 message: 'Book not found',
+                details: {
+                    field: 'id',
+                    error: 'Invalid Book ID'
+                }
             })
         }
         if (book.borrowed_by === null){
@@ -153,6 +150,10 @@ export  const returnBook = async (req, res, next) => {
             return res.status(400).json({
                 success: false,
                 message: 'Book can not be returned by another person.',
+                details: {
+                    field: 'userId',
+                    error: 'Current user is not the borrower'
+                }
             })
             
         }
@@ -189,7 +190,11 @@ export  const updateBook = async (req, res, next) => {
         if (!book){
             return res.status(404).json({
                 success: false,
-                message: 'Book not found: Invalid Book ID',
+                message: 'Book not found',
+                details: {
+                    field: 'id',
+                    error: 'Invalid Book ID'
+                }
             })
         }
 
@@ -197,6 +202,10 @@ export  const updateBook = async (req, res, next) => {
             return res.status(400).json({
                 success: false,
                 message: 'Book can only be updated by the owner.',
+                details: {
+                    field: 'userId',
+                    error: 'Current user is not the owner'
+                }
             })    
         }
 
@@ -225,7 +234,11 @@ export  const deleteBook = async (req, res, next) => {
         if (!book){
             return res.status(400).json({
                 success: false,
-                message: 'Book not found: Invalid Book ID',
+                message: 'Book not found',
+                details: {
+                    field: 'id',
+                    error: 'Invalid Book ID'
+                }
             })
         }
 
@@ -237,6 +250,10 @@ export  const deleteBook = async (req, res, next) => {
             return res.status(400).json({
                 success: false,
                 message: 'Books can only be deleted by their owner.',
+                details: {
+                    field: 'userId',
+                    error: 'Current user is not the owner'
+                }
             })   
         }
 

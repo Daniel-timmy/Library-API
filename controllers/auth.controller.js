@@ -61,17 +61,31 @@ export const login = async (req, res, next) => {
         const user = await User.findOne({ email });
     
         if(!user) {
-          const error = new Error('User not found');
-          error.statusCode = 404;
-          throw error;
+          return res.status(400).json({
+            success: false,
+            message: 'User with email not found',
+            data: null,
+            details: 
+              {
+                "field": "email",
+                "error": "Invalid Email Address"
+              },
+          });
         }
     
         const isPasswordValid = await bcrypt.compare(password, user.password);
     
         if(!isPasswordValid) {
-          const error = new Error('Invalid password');
-          error.statusCode = 401;
-          throw error;
+          return res.status(401).json({
+            success: false,
+            message: 'Invalid password',
+            data: null,
+            details: 
+              {
+                "field": "password",
+                "error": "Your password is incorrect"
+              },
+            });
         }
     
         const token = jwt.sign({ userId: user._id }, JWT_SECRET, { expiresIn: JWT_EXPIRES_IN });

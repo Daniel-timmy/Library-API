@@ -13,7 +13,7 @@ const errorMiddleware = (err, req, res, next) => {
         }
 
         // Mogoose duplicate key
-        if (err.code ===11000 ){
+        if (err.code === 11000 ){
             const message = ' Duplicate field value entered';
             error = new Error(message);
             error.statusCode = 400;
