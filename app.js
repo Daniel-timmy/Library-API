@@ -56,8 +56,8 @@ const swaggerOptions = {
             version: '1.0.0',
             title: 'Library API Documentation',
             description: `
-            Library API Documentation Instructions
-             
+            LIBRARY API DOCUMENTATION INSTRUCTIONS
+
             Welcome to the Library API! This API allows you to manage books,
              including adding, retrieving, updating, and deleting them.
             
