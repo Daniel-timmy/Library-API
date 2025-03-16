@@ -1,6 +1,5 @@
 import express from "express";
 import swaggerJSDoc from "swagger-jsdoc";
-// const swaggerUi = require('swagger-ui-express')
 import swaggerUi from "swagger-ui-express"
 import { PORT } from './config/env.js'
 import cookieParser from "cookie-parser";
@@ -60,18 +59,18 @@ const swaggerOptions = {
             Library API Documentation  
             Welcome to the Library API! This API allows you to manage books, including adding, retrieving, updating, and deleting them.
             
-            Servers
+            SERVERS
             - Local server: http://localhost:5500
             - Production server: https://library-api-v2q4.onrender.com
             Make sure to switch between servers as needed.
 
-            Authentication  
+            AUTHENTICATION  
             - Some routes require a BEARER TOKEN (JWT) for authentication. 
             - To get a token, register or login with the example in the enpoints.
             - Copy the token from the response. 
             - Use the AUTHORIZE button in Swagger UI to add your token.  
 
-            Features  
+            FEATURES  
             - CRUD Operations on books  
             - User Authentication (Login/Register)  
             - JWT-Based Security for protected routes  
@@ -185,7 +184,24 @@ app.use('/api/v1/books', bookRouter)
 app.use(errorMiddleware);
 
 app.get('/', (req, res) => {
-    res.send('Welcome to the Library API')
+    res.send(`
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Library API</title>
+        </head>
+        <body>
+            <div style="text-align: center; margin-top: 20px; border: 1px solid gray; padding: 20px; border-radius: 5px;">
+                <h1>Welcome to the Library API</h1>
+                <p>This API allows you to manage books, including adding, retrieving, updating, and deleting them.</p>
+                <p>MAKE SURE TO SWITCH TO THE PRODUCTION SERVER FOR TESTING THE LIVE API</p>
+                <p><a href="/api-docs/">API Documentation</a></p>
+            </div>
+        </body>
+        </html>
+    `)
 })
 
 app.listen(PORT, async () => {

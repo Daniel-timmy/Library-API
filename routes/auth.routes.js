@@ -9,7 +9,7 @@ const authRouter = Router();
  * /api/v1/auth/register:
  * 
  *   post:
- *     summary: Register a new user
+ *     summary: Register a new user to be able to access the protected routes
  *     description: Creates a new user account with name, email, and password.
  *     tags: 
  *       - Authentication
@@ -73,7 +73,7 @@ authRouter.post('/register', register)
  * @swagger
  * /api/v1/auth/login:
  *   post:
- *     summary: Login user
+ *     summary: Login user to be able to access the protected routes
  *     description: Authenticates a user with name and password.
  *     tags:
  *       - Authentication
