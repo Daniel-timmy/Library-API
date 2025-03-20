@@ -9,7 +9,7 @@ const bookRouter = Router();
  * /api/v1/books:
  *   post:
  *     summary: Add a new book
- *     description: Adds a new book to the collection. Requires authentication.
+ *     description: Adds a new book to the collection. Requires authentication. Categories: ["war", "technology", "sport", "history", "politics"]
  *     tags:
  *       - Books
  *     security:
