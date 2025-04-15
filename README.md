@@ -42,3 +42,8 @@
 6. **Access the API:**
    Open your browser and go to `http://localhost:3000`
    for swagger UI go to `http://localhost:3000/api-docs`
+
+**Live Link**
+```
+https://library-api-v2q4.onrender.com/
+```
